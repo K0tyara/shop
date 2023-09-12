@@ -10,18 +10,17 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create('media', function (Blueprint $table) {
             $table->id();
 
-            $table->integer('imagetable_id');
-            $table->string('imagetable_type');
+            $table->foreignId('product_id')->constrained('products');
+
+            $table->unsignedInteger('type');
 
             $table->string('path_original');
             $table->string('path_preview');
             $table->string('url_original');
             $table->string('url_preview');
-
-            $table->timestamps();
         });
     }
 
@@ -30,6 +29,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('images');
+        Schema::dropIfExists('media');
     }
 };

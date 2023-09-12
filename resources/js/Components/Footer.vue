@@ -34,7 +34,7 @@
 
             </div>
         </div>
-        <div class="w-full px-8 py-3">
+        <div class="w-full px-8 pt-3">
             <p class="font-bold uppercase mb-10">
                 newsletter
             </p>

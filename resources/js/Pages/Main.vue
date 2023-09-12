@@ -7,7 +7,7 @@
         <LastProductContainer class="my-10"/>
         <div class="container mx-auto flex justify-center my-10">
             <DarkBoxButton :is-uppercase="true"
-            :content="'Show all products'"/>
+                           :content="'Show all products'"/>
         </div>
         <Footer/>
     </MainLayout>
@@ -25,7 +25,11 @@ import Footer from "@/Components/Footer.vue";
 
 export default defineComponent({
     name: "Main",
-    components: {Footer, DarkBoxButton, LastProductContainer, CategoriesContainer, Head, MainLayout}
+    components: {
+        Footer, DarkBoxButton,
+        LastProductContainer, CategoriesContainer,
+        Head, MainLayout
+    }
 })
 </script>
 

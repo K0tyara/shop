@@ -1,23 +1,32 @@
 <template>
     <div class="container mx-auto flex justify-center gap-x-10">
-        <ProductSm :image="'https://placehold.co/228x300'"
-        :title="'Lorem ipsum dolor sit amet.'"/>
-        <ProductSm :image="'https://placehold.co/228x300'"
-        :title="'Lorem ipsum dolor sit amet.'"/>
-        <ProductSm :image="'https://placehold.co/228x300'"
-        :title="'Lorem ipsum dolor sit amet.'"/>
-        <ProductSm :image="'https://placehold.co/228x300'"
-        :title="'Lorem ipsum dolor sit amet.'"/>
+        <ProductSm v-for="(p, id) in products" :product="p"/>
     </div>
 </template>
 
 <script>
-import {defineComponent} from 'vue'
+import {defineComponent, onMounted, ref} from 'vue'
 import ProductSm from "@/Components/Product/ProductSm.vue";
+import {shopStore} from "@/Stores/shopStore.js";
+
 
 export default defineComponent({
     name: "LastProductContainer",
-    components: {ProductSm}
+    components: {
+        ProductSm
+    },
+    setup(){
+        const store = shopStore();
+        const products = ref([]);
+        onMounted(async () => {
+            await store.loadLastProducts();
+            products.value = store.lastProducts;
+        })
+
+        return {
+            products,
+        }
+    }
 })
 </script>
 

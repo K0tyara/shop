@@ -2,26 +2,30 @@
 
 namespace Database\Factories;
 
+use App\Models\Media;
+use App\Services\MediaType;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Image>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Media>
  */
-class ImageFactory extends Factory
+class MediaFactory extends Factory
 {
     /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
      */
+    protected $model = Media::class;
     public function definition(): array
     {
         return [
-            'path_original' => '',
-            'path_preview' => '',
+            'type' => MediaType::Image,
+
+            'path_original' => 'https://placehold.co/1900x1200',
             'url_original' => 'https://placehold.co/520x720',
+            
+            'path_preview' => 'https://placehold.co/1900x1200',
             'url_preview' => 'https://placehold.co/250x300',
         ];
     }
