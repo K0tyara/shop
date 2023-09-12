@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +16,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [MainController::class, 'index']);
+
+Route::prefix('product')->controller(ProductController::class)
+    ->group(function () {
+        Route::get('/', 'index')->name('product.index');
+        Route::get('/{slug}', 'show')->name('product.show');
+    });
+
+
+
+
+
 
 //Route::get('/dashboard', function () {
 //    return Inertia::render('Dashboard');
