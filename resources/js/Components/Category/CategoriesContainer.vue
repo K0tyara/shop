@@ -1,5 +1,6 @@
 <template>
-    <div class="flex items-center justify-center h-[600px] container mx-auto gap-x-4">
+    <div class="flex items-center justify-center h-[300px] p-2 sm:p-0 sm:h-[600px] container mx-auto gap-x-2 sm:gap-x-4
+                   ">
         <BlockMd :image="'https://placehold.co/380x560'"
                  :text="'Сумки'"/>
         <BlockMd :image="'https://placehold.co/380x560'"

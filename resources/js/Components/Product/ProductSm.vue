@@ -1,7 +1,8 @@
 <template>
-    <div class="text-center">
+    <div class="text-center w-full sm:w-auto  px-2 py-1 sm:p-0">
         <Link :href="route('product.show', product.slug)">
-            <img :src="product.preview.url_preview" :alt="product.title"/>
+            <img class="w-full sm:w-auto"
+                 :src="product.preview.url_preview" :alt="product.title"/>
         </Link>
         <div class="flex justify-between items-center p-1">
             <p>

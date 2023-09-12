@@ -1,5 +1,6 @@
 <template>
-    <div class="container mx-auto flex justify-center gap-x-10">
+    <div class="container mx-auto flex justify-center gap-x-4 sm:gap-x-10
+        flex-col sm:flex-row items-center">
         <ProductSm v-for="(p, id) in products" :product="p"/>
     </div>
 </template>

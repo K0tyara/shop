@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Enums\MediaType;
 use App\Models\Media;
-use App\Services\MediaType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -24,7 +24,7 @@ class MediaFactory extends Factory
 
             'path_original' => 'https://placehold.co/1900x1200',
             'url_original' => 'https://placehold.co/520x720',
-            
+
             'path_preview' => 'https://placehold.co/1900x1200',
             'url_preview' => 'https://placehold.co/250x300',
         ];

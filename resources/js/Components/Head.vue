@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-[url('https://placehold.co/1900x700')] bg-no-repeat bg-center w-full bg-cover h-[600px]
+    <div class="bg-[url('https://placehold.co/1900x700')] bg-no-repeat bg-center w-full bg-cover h-[300px] sm:h-[600px]
         flex flex-col justify-end relative">
         <div class="flex flex-col items-start gap-y-10
                    absolute bottom-[10%]  left-[5%]">

@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Enums\MediaType;
 use App\Models\Media;
 use App\Models\Product;
-use App\Services\MediaType;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 

@@ -1,23 +1,25 @@
 <template>
-    <Ukraine/>
-    <div class="flex flex-col justify-center  my-4 group">
-        <ApplicationLogo class="self-center"/>
-        <div class="border-b-[1px] border-b-gray-300 flex ">
-            <CategoriesRowContainer class="mt-6"/>
-        </div>
-        <div class="flex relative pt-[20px]">
-            <BreadCrumbs :category="{
+    <div class="h-[100%] flex flex-col">
+        <Ukraine/>
+        <div class="flex flex-col my-4 group">
+            <ApplicationLogo class="self-center"/>
+            <div class="border-b-[1px] border-b-gray-300 flex ">
+                <CategoriesRowContainer class="mt-6"/>
+            </div>
+            <div class="flex relative pt-[20px]">
+                <BreadCrumbs :category="{
                         name: category,
                         title:category,
                     }" :subcategory="{
                         name:subcategory,
                         title:subcategory,
                     }"
-                         class="absolute left-[50%] translate-x-[-50%] top-2"/>
-            <slot/>
+                             class="absolute left-[50%] translate-x-[-50%] top-2"/>
+                <slot/>
+            </div>
         </div>
+        <Footer/>
     </div>
-    <Footer/>
 </template>
 
 

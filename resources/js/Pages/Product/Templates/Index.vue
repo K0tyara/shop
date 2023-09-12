@@ -1,15 +1,15 @@
 <template>
     <Main :category="category"
           :subcategory="subcategory">
-        <div class="w-1/6 pl-11 py-16">
+        <div class="w-1/6 pl-11 py-16 hidden md:block">
             <CategoriesLeftContainer/>
         </div>
         <div class="flex-1">
-            <div class=" px-8 py-3 ">
-                <div class="flex flex-row flex-wrap gap-2">
+            <div class="px-8 py-3 ">
+                <div class="flex flex-row flex-wrap gap-2 justify-center xl:justify-start">
                     <ProductSm v-for="(prod, id) in products"
                                :product="prod"
-                               class="max-w-[250px]"/>
+                               class="sm:max-w-[250px]"/>
                 </div>
             </div>
         </div>

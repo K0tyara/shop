@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Enums\MediaType;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Product\PreviewProductResource;
 use App\Models\Product;
-use App\Services\MediaType;
 
 class ProductController extends Controller
 {

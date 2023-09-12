@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\MediaType;
 use App\Http\Requests\ProductIndexRequest;
 use App\Http\Resources\Product\PreviewProductResource;
 use App\Http\Resources\Product\ShowProductResource;
 use App\Models\Product;
-use App\Services\MediaType;
 use Inertia\Inertia;
 
 class ProductController extends Controller
 {
     public function index(ProductIndexRequest $request)
     {
-        $products = Product::with(['media' => function ($q) {
-            $q->where('type', MediaType::Image)
-                ->select(['media.product_id', 'media.url_preview'])
-                ->take(1);
-        }])
+        $products = Product::query()
+            ->with(['media' => function ($q) {
+                $q->where('type', MediaType::Image)
+                    ->select(['media.product_id', 'media.url_preview'])
+                    ->take(1);
+            }])
             ->when($request->category, function ($query) use ($request) {
                 $query->whereHas('category', function ($subQuery) use ($request) {
                     $subQuery->where('name', $request->category);
@@ -38,17 +39,9 @@ class ProductController extends Controller
         ]);
     }
 
-    public function show(string $slug)
+    public function show(Product $product)
     {
-        $product = Product::query()->where('slug', $slug)
-            ->with([
-                'media',
-                'category',
-                'subcategory',
-            ])->first();
-
-        if (!$product)
-            abort(404);
+        $product->load(['media', 'category', 'subcategory']);
 
         return Inertia::render('Product/Templates/Show', [
             'product' => ShowProductResource::make($product)

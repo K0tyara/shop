@@ -11,14 +11,14 @@
                 <img :src="m.url_preview" alt="...">
             </li>
         </ul>
-        <div class="p-1 flex flex-1 items-center h-[100%] max-w-[448px] overflow-hidden">
+        <div class="p-1 flex flex-1  h-[100%] md:max-w-[448px] w-full overflow-hidden">
             <img
                 v-if="activeMedia.type === 1"
                 :src="activeMedia.url_original"
                 alt="..."
-                class="h-[100%] object-contain"
+                class="h-[100%] object-cover md:object-contain w-full md:w-auto"
             />
-            <div v-else-if="activeMedia.type === 0" class="bg-gray-500 h-[100%] flex justify-center">
+            <div v-else-if="activeMedia.type === 0" class="bg-gray-500 h-[100%] w-full sm:w-auto flex justify-center">
                 <video controls="controls">
                     <source :src="activeMedia.url_original">
                 </video>
@@ -28,7 +28,6 @@
 </template>
 
 <script>
-import { ref } from 'vue';
 
 export default {
     props: {

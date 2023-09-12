@@ -1,6 +1,6 @@
 <template>
-    <div class="w-full flex gap-x-16 mt-14 bg-gray-100 py-8 px-4">
-        <div class="text-left w-1/2 px-8 py-3">
+    <div class="w-full flex gap-x-16 bg-gray-100 py-8 px-4 mt-auto flex-col md:flex-row">
+        <div class="text-left md:w-1/2  px-8 py-3">
             <p class="font-bold uppercase mb-10">
                 Lorem ipsum dolor sit amet. (about)
             </p>
@@ -10,11 +10,11 @@
                 repudiandae veniam voluptate! Adipisci at dolore doloribus eius id voluptate!
             </p>
         </div>
-        <div class="w-1/2 px-8 py-3">
+        <div class="md:w-1/2 px-8 py-3">
             <p class="font-bold uppercase mb-10">
                 help
             </p>
-            <div class="flex flex-col font-thin text-gray-600">
+            <div class="flex gap-x-10 md:gap-x-0 flex-wrap md:flex-col font-thin text-gray-600">
                 <a href="#">
                     Lorem.
                 </a>
