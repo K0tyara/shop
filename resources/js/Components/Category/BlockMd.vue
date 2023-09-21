@@ -1,6 +1,6 @@
 <template>
     <Link class="flex-1 bg-center max-w-[360px] sm:w-full h-[100%] bg-no-repeat object-contain
-            flex justify-center items-center"
+            flex justify-center items-center cover"
           :href="route('product.index', {
               category: 'bags',
           })"
@@ -30,5 +30,20 @@ export default defineComponent({
 
 
 <style scoped>
+.cover {
+    position: relative;
+    overflow: hidden;
+}
 
+.cover::before {
+    content: "";
+    background: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Розміщуємо псевдоелемент позаду контенту */
+    opacity: 0.6; /* Затемнення картинки (змініть за потребою) */
+}
 </style>
