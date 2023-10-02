@@ -15,8 +15,11 @@ class CategoryResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'name' => $this->name,
-            'subcategory' => CategoryResource::collection($this->whenLoaded('children')),
+            'subcategory' => SubcategoryResource::collection($this->whenLoaded('subcategory')),
+            'products' => ProductResource::collection($this->whenLoaded('products')),
+            'products_count' => $this->whenCounted('products')
         ];
     }
 }

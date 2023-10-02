@@ -22,5 +22,8 @@ class CategorySeeder extends Seeder
         Category::query()->insert(array_map(function ($item) {
             return ['name' => $item];
         }, $category));
+
+        Category::query()->find(1)->children()->sync([1,2]);
+        Category::query()->find(2)->children()->sync([1]);
     }
 }

@@ -19,11 +19,11 @@ return new class extends Migration {
             $table->unsignedInteger('qty');
             $table->float('price');
 
-            $table->foreignId('category_id')->nullable()
-                ->constrained('categories')->nullOnDelete();
-            $table->foreignId('subcategory_id')->nullable()
-                ->constrained('categories')->nullOnDelete();
+            $table->foreignId('category_id')
+                ->constrained('categories');
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

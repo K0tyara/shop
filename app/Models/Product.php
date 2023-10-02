@@ -5,19 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Staudenmeir\EloquentEagerLimit\HasEagerLimit;
 
 class Product extends Model
 {
-    use HasFactory, HasEagerLimit;
+    use HasFactory, HasEagerLimit, SoftDeletes;
 
     protected $fillable = [
         'title',
         'description',
         'article',
         'qty',
-        'price'
+        'price',
+        'category_id'
     ];
 
     public function category(): BelongsTo
@@ -25,9 +28,9 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function subcategory(): BelongsTo
+    public function subcategories(): BelongsToMany
     {
-        return $this->belongsTo(Category::class, 'subcategory_id');
+        return $this->belongsToMany(Subcategory::class);
     }
 
     public function media(): HasMany
