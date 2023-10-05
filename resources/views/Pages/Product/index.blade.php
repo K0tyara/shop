@@ -12,8 +12,8 @@
                 <div
                     class="flex flex-col flex-shrink-0 space-y-3 md:flex-row md:items-center lg:justify-end md:space-y-0 md:space-x-3">
                     <x-buttons.primary-a :content="' Add new product'"
-                                              :icon="'fa-solid fa-plus fa-md'"
-                                              :href="route('admin.product.create')"/>
+                                         :icon="'fa-solid fa-plus fa-md'"
+                                         :href="route('admin.product.create')"/>
                     <x-buttons.secondary-button :content="'Update stocks 1/250'" :icon="'fa-solid fa-rotate fa-md'"/>
                     <x-buttons.secondary-button ry-button :content="'Export'" :icon="'fa-solid fa-upload fa-md'"/>
                 </div>
@@ -136,10 +136,10 @@
                 </x-admin.table.tr-body>
             @endforeach
         </x-slot:body>
-            <x-slot:bottom>
-                <nav
-                    class="flex flex-col items-start justify-between p-4 space-y-3 md:flex-row md:items-center md:space-y-0"
-                    aria-label="Table navigation">
+        <x-slot:bottom>
+            <nav
+                class="flex flex-col items-start justify-between p-4 space-y-3 md:flex-row md:items-center md:space-y-0"
+                aria-label="Table navigation">
                     <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
                         Showing
                     <span class="font-semibold text-gray-900 dark:text-white">
@@ -150,10 +150,10 @@
                       {{$data['meta']['total']}}
                   </span>
                 </span>
-                    <x-pagination :links="$data['links']"
-                                  :meta="$data['meta']"
-                                  :offset="3"/>
-                </nav>
+                <x-pagination :links="$data['links']"
+                              :meta="$data['meta']"
+                              :offset="3"/>
+            </nav>
         </x-slot:bottom>
     </x-admin.table.table-template>
 

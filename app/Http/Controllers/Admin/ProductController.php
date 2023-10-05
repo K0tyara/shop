@@ -3,10 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\MediaType;
+use App\Helpers\MediaSaveHelper;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Product\StoreProductRequest;
+use App\Http\Resources\CategoryResource;
+use App\Http\Resources\ColorResource;
 use App\Http\Resources\ProductResource;
+use App\Http\Resources\SubcategoryResource;
+use App\Models\Category;
+use App\Models\Color;
 use App\Models\Media;
 use App\Models\Product;
+use App\Models\Subcategory;
+use App\Services\Preview\Image\ImagePreviewCreator;
+use App\Services\Storages\LocalStorage;
 
 class ProductController extends Controller
 {
@@ -31,6 +41,17 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('Pages.Product.create');
+        return view('Pages.Product.create', [
+            'categories' => CategoryResource::collection(Category::get())->resolve(),
+            'subcategories' => SubcategoryResource::collection(Subcategory::get())->resolve(),
+            'colors' => ColorResource::collection(Color::get())->resolve(),
+        ]);
+    }
+
+    public function store(StoreProductRequest $request)
+    {
+        $file = $request->file('media')[0];
+
+        (new MediaSaveHelper(new LocalStorage()))->save($file, new ImagePreviewCreator(), '/images');
     }
 }
