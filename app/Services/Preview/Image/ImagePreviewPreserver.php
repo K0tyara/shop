@@ -3,6 +3,7 @@
 namespace App\Services\Preview\Image;
 
 use App\Services\Abstracts\PreviewPreserver;
+use Illuminate\Support\Facades\Log;
 use Intervention\Image\Exception\NotWritableException;
 
 class ImagePreviewPreserver extends PreviewPreserver
@@ -13,7 +14,8 @@ class ImagePreviewPreserver extends PreviewPreserver
             $this->file->save($path);
             return $path;
         } catch (NotWritableException $ex) {
-            return false;
+            Log::error('Error create preview image. Path: ' . $path);
+            throw  $ex;
         }
     }
 }

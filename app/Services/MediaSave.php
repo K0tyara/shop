@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Helpers;
+namespace App\Services;
 
 use App\Services\Contracts\PreviewCreator;
-use App\Services\Contracts\Storage as StorageContract;
+use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
-class MediaSaveHelper
+class MediaSave
 {
-    private StorageContract $storage;
+    private Filesystem $filesystem;
 
-    public function __construct(StorageContract $storage)
+    public function __construct(Filesystem $filesystem)
     {
-        $this->storage = $storage;
+        $this->filesystem = $filesystem;
     }
 
     function save(UploadedFile $file, PreviewCreator $preview, string $directory, string $originalName = null): array|bool
@@ -22,7 +22,7 @@ class MediaSaveHelper
         $originalName = ($originalName ? ($originalName . $extension) : $file->getClientOriginalName());
         $previewName = str_replace($extension, '_preview' . $extension, $originalName);
 
-        $originalPath = $this->storage->save($file, $directory, $originalName);
+        $originalPath = $this->filesystem->putFileAs($directory, $file, $originalName);
         if (!$originalPath)
             return false;
 

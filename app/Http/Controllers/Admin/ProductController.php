@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\MediaType;
-use App\Helpers\MediaSaveHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\StoreProductRequest;
 use App\Http\Resources\CategoryResource;
@@ -15,8 +14,9 @@ use App\Models\Color;
 use App\Models\Media;
 use App\Models\Product;
 use App\Models\Subcategory;
+use App\Services\MediaSave;
 use App\Services\Preview\Image\ImagePreviewCreator;
-use App\Services\Storages\LocalStorage;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -51,7 +51,6 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         $file = $request->file('media')[0];
-
-        (new MediaSaveHelper(new LocalStorage()))->save($file, new ImagePreviewCreator(), '/images');
+        dd((new MediaSave(Storage::disk('public')))->save($file, new ImagePreviewCreator(), '/images'));
     }
 }
