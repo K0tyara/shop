@@ -120,10 +120,7 @@
                         <x-admin.table.td>
                             <x-slot:content>
                                 <div class="flex gap-x-4 justify-end">
-                                    <button class="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4
-                                                                  font-medium rounded-sm text-sm px-5 py-[4px] text-center mr-2 mb-2 ">
-                                        <i class="fa-regular fa-pen-to-square fa-md"></i>
-                                    </button>
+                                    <x-buttons.yellow-edit-a :href="route('admin.product.edit', $product['id'])"/>
                                     <button class="text-white bg-red-600 hover:bg-red-800 focus:outline-none focus:ring-4
                                                                   font-medium rounded-sm text-sm px-5 py-[4px] text-center mr-2 mb-2 ">
                                         <i class="fa-regular fa-trash-can fa-md"></i>

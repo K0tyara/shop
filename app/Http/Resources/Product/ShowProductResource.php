@@ -24,7 +24,7 @@ class ShowProductResource extends JsonResource
             'qty' => $this->qty,
             'category' => $this->whenLoaded('category', $this->category->name ?? null),
             'subcategory' => $this->whenLoaded('subcategory', $this->subcategory->name ?? null),
-            'media' => $this->whenLoaded('media', MediaResource::collection($this->media ?? []))
+            'media' => MediaResource::collection($this->whenLoaded('media')),
         ];
     }
 }

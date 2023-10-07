@@ -1,10 +1,11 @@
 <template>
-    <div class="text-center w-full sm:w-auto  px-2 py-1 sm:p-0">
-        <Link :href="route('product.show', product.slug)">
-            <img class="w-full sm:w-auto"
-                 :src="product.preview.url_preview" :alt="product.title"/>
+    <div class="text-center sm:w-[250px] h-[350px] w-[300px] px-2 py-1 sm:p-0">
+        <Link :href="route('product.show', product.slug)"
+        class="block w-full h-[calc(100%-32px)]">
+            <img class="w-full sm:w-auto h-[100%] object-cover"
+                 :src="product.preview?.url_preview" :alt="product.title"/>
         </Link>
-        <div class="flex justify-between items-center p-1">
+        <div class="flex justify-between items-center p-1 h-auto">
             <p>
                 {{ shortTitle(product.title) }}
             </p>
@@ -26,6 +27,8 @@ export default defineComponent({
     },
     props: {
         product: Object,
+    },
+    setup(props) {
     },
     methods: {
         shortTitle(str) {

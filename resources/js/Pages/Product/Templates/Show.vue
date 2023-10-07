@@ -4,8 +4,8 @@
             <MediaList :media="media" @activateMedia="activateMedia" :activeMedia="activeMedia"/>
             <ProductDetails :product="product"/>
             <hr class="h-1 w-full mt-4"/>
-            <p class="mx-auto mb-3">Last products</p>
-            <LastProductContainer/>
+            <p class="mx-auto my-10">Last products</p>
+            <LastProductContainer />
         </div>
     </Main>
 </template>

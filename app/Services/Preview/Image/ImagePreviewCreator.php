@@ -12,7 +12,7 @@ class ImagePreviewCreator implements PreviewCreator
     {
         return new ImagePreviewPreserver(
             Image::make($file)
-                ->fit(120, 120)
+                ->fit(250, 300)
                 ->orientate()
         );
     }

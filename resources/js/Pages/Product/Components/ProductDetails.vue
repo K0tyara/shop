@@ -5,7 +5,7 @@
             <h1 class="text-4xl font-extrabold dark:text-white">{{ product.title }}</h1>
             <p class="font-bold text-xs text-gray-400">{{ product.price }}</p>
 
-            <p class="my-6 text-lg font-normal text-gray-500 dark:text-gray-400 whitespace-wrap">
+            <p class="my-10 text-md font-normal text-gray-500 dark:text-gray-400 whitespace-wrap whitespace-pre-line">
                 {{ product.description }}
             </p>
         </div>

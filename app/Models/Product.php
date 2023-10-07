@@ -38,4 +38,8 @@ class Product extends Model
         return $this->hasMany(Media::class);
     }
 
+    public function colors(): BelongsToMany
+    {
+        return $this->belongsToMany(Color::class);
+    }
 }

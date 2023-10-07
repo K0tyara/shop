@@ -41,7 +41,7 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        $product->load(['media', 'category', 'subcategory']);
+        $product->load(['media', 'category', 'subcategories']);
 
         return Inertia::render('Product/Templates/Show', [
             'product' => ShowProductResource::make($product)

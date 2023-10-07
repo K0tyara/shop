@@ -14,7 +14,7 @@ class ImagePreviewPreserver extends PreviewPreserver
             $this->file->save($path);
             return $path;
         } catch (NotWritableException $ex) {
-            Log::error('Error create preview image. Path: ' . $path);
+            Log::error('Error save preview image. Path: ' . $path);
             throw  $ex;
         }
     }

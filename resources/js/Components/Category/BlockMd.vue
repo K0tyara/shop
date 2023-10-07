@@ -1,15 +1,18 @@
 <template>
-    <Link class="flex-1 bg-center max-w-[360px] sm:w-full h-[100%] bg-no-repeat object-contain
-            flex justify-center items-center cover"
-          :href="route('product.index', {
-              category: 'bags',
+    <div class="max-w-[360px] sm:w-full min-w-[120px] h-[calc(100%-40px)]">
+        <Link class="flex-1 bg-center h-[100%] bg-no-repeat object-contain
+            flex justify-center items-center bg-cover cover"
+              :href="route('product.index', {
+              category: 'bags'
           })"
-          :style="{ backgroundImage: 'url(' + image + ')' }">
+              :style="{ backgroundImage: 'url(' + image + ')' }">
 
-        <p class="uppercase font-bold text-[25px] text-white">
-            {{ text }}
-        </p>
-    </Link>
+            <p class="z-10 uppercase font-bold text-[25px] text-white">
+                {{ text }}
+            </p>
+        </Link>
+    </div>
+
 </template>
 
 <script>

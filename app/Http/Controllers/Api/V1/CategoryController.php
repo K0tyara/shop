@@ -10,7 +10,7 @@ class CategoryController extends Controller
 {
     public function show()
     {
-        $category = Category::query()->with('children')->whereNull('category_id')->get();
+        $category = Category::query()->with('children')->get();
         return CategoryResource::collection($category);
     }
 }

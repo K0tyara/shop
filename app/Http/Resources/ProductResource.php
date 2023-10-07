@@ -25,6 +25,7 @@ class ProductResource extends JsonResource
 
             'category' => CategoryResource::make($this->whenLoaded('category')),
             'subcategories' => SubcategoryResource::collection($this->whenLoaded('subcategories')),
+            'colors' => ColorResource::collection($this->whenLoaded('colors')),
             'preview' => $this->whenHas('preview'),
         ];
     }
