@@ -1,6 +1,5 @@
-
 <template>
-<Ukraine/>
+    <Ukraine/>
     <slot class="w-full"/>
 </template>
 

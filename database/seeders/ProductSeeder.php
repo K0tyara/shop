@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Color;
 use App\Models\Product;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Tag;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 class ProductSeeder extends Seeder
@@ -13,7 +15,13 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        Product::factory()->count(50)->create();
+        $faker = Factory::create();
+        $tag_count = Tag::count();
+        $color_count = Color::count();
+        Product::factory()->count(50)->create()->each(function ($product_item) use ($tag_count, $color_count, $faker) {
+            $product_item->tags()->sync([$faker->numberBetween(1, $tag_count)]);
+            $product_item->colors()->sync([$faker->numberBetween(1, $color_count)]);
+        });
         Product::find(1)->subcategories()->sync([1]);
     }
 }

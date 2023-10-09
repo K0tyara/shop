@@ -10,7 +10,7 @@ class CategoryController extends Controller
 {
     public function show()
     {
-        $category = Category::query()->with('children')->get();
+        $category = Category::query()->with('subcategories')->get();
         return CategoryResource::collection($category);
     }
 }

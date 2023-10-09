@@ -15,8 +15,8 @@ class SubcategorySeeder extends Seeder
     {
         Subcategory::query()
             ->insert([
-                ['name' => 'subcategory_1',],
-                ['name' => 'subcategory_2',],
+                ['name' => 'Куртки',],
+                ['name' => 'Окуляри',],
             ]);
     }
 }

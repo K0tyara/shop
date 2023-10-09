@@ -15,7 +15,7 @@ class CategoryController extends Controller
     {
         return view('Pages.Category.index', [
             'categories' => CategoryResource::collection(Category::query()
-                ->with('children:id,name')
+                ->with('subcategories:id,name')
                 ->withCount('products')
                 ->orderBy('created_at', 'desc')
                 ->get()),
@@ -29,7 +29,7 @@ class CategoryController extends Controller
     {
         Category::create(
             $request->all(),
-        )->children()->sync($request->subcategories);
+        )->subcategories()->sync($request->subcategories);
 
         return redirect()->route('admin.category.index');
     }

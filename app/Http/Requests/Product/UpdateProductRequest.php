@@ -30,7 +30,7 @@ class UpdateProductRequest extends FormRequest
             ],
             'description' => 'required|string',
             'category_id' => 'required|numeric|exists:categories,id',
-            'subcategories' => 'required|array|exists:subcategories,id',
+            'subcategory_id' => 'required|numeric|exists:subcategories,id',
             'price' => 'required|numeric',
             'qty' => 'required|numeric',
             'colors' => 'required|array|exists:colors,id',

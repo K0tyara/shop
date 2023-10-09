@@ -14,10 +14,10 @@
                                    :placeholder="'Awesome product...'"/>
                 </div>
                 {{--                {{dd($categories)}}--}}
-                <div class="grid sm:grid-cols-[auto_auto_1fr] grid-flow-dense items-center grid-rows-2 grid-cols-1">
+                <div class="grid grid-cols-[1fr] sm:flex flex-row gap-x-4 justify-between">
                     <x-inputs.gray-dropdown :id="'category'"
                                             :text="'Category'"
-                                            :title="'Select category'"
+                                            class="w-full justify-center"
                                             :dropdown-toggle="'dropdownCategory'">
                         <x-slot:content>
                             <x-lists.gray-ul :aria-labelledby="'category_ul'"
@@ -32,73 +32,42 @@
                             />
                         </x-slot:content>
                     </x-inputs.gray-dropdown>
-                    <x-labels.sm-gray-label :text="'and'" class="mx-6"/>
+
+                    <x-labels.sm-gray-label class="text-center sm:text-left sm:mx-4" :text="'before'"/>
+
                     <x-inputs.gray-dropdown :id="'subcategory'"
                                             :text="'Subcategory'"
-                                            :title="'subcategory'"
+                                            class="w-full justify-center"
                                             :dropdown-toggle="'dropdownSubcategory'">
                         <x-slot:content>
                             <x-lists.gray-ul :aria-labelledby="'subcategory_ul'"
+                            />
+                        </x-slot:content>
+                    </x-inputs.gray-dropdown>
+
+                    <x-labels.sm-gray-label class="text-center sm:text-left sm:mx-4" :text="'and'"/>
+
+                    <x-inputs.gray-dropdown :id="'tags'"
+                                            :text="'Tags'"
+                                            class="w-full justify-center"
+                                            :dropdown-toggle="'dropdownTags'">
+                        <x-slot:content>
+                            <x-lists.gray-ul :aria-labelledby="'tags_ul'"
                                              :items="array_map(function ($item){
                                              return view('components.inputs.label-checkbox',[
                                               'id' => $item['id'],
                                               'value' => $item['id'],
                                               'title' => $item['name'],
-                                              'name' => 'subcategories[]'
+                                              'name' => 'tags[]'
                                              ]);
-                                }, $subcategories)"/>
+                                }, $tags)"/>
                         </x-slot:content>
                     </x-inputs.gray-dropdown>
                 </div>
-                {{--                <script>--}}
-                {{--                    const category = document.querySelector('#category');--}}
-                {{--                    const subcategory_button = document.querySelector('#subcategory');--}}
-                {{--                    const subcategory_list = document.querySelector('ul[aria-labelledby=subcategory_ul]');--}}
-                {{--                    const radioButtons = document.querySelectorAll('input[type="radio"][name="category_id"]');--}}
-                {{--                    const data = @json($categories);--}}
-
-                {{--                    function createCheckbox(sub) {--}}
-                {{--                        const li = document.createElement('li');--}}
-                {{--                        const div = document.createElement('div');--}}
-                {{--                        const input = document.createElement('input');--}}
-                {{--                        const label = document.createElement('label');--}}
-
-                {{--                        div.classList.add('flex', 'items-center');--}}
-                {{--                        input.id = sub.id;--}}
-                {{--                        input.value = sub.id;--}}
-                {{--                        input.name = 'subcategories';--}}
-                {{--                        input.type = 'checkbox';--}}
-                {{--                        input.classList.add('w-4', 'h-4', 'text-blue-600', 'bg-gray-100', 'border-gray-300', 'rounded', 'focus:ring-blue-500', 'dark:focus:ring-blue-600', 'dark:ring-offset-gray-700', 'dark:focus:ring-offset-gray-700', 'focus:ring-2', 'dark:bg-gray-600', 'dark:border-gray-500');--}}
-                {{--                        label.classList.add('ml-2', 'text-sm', 'font-medium', 'text-gray-900', 'dark:text-gray-300');--}}
-                {{--                        label.textContent = sub.name;--}}
-
-                {{--                        div.appendChild(input);--}}
-                {{--                        div.appendChild(label);--}}
-                {{--                        li.appendChild(div);--}}
-
-                {{--                        return li;--}}
-                {{--                    }--}}
-
-                {{--                    radioButtons.forEach(function (radioButton) {--}}
-                {{--                        radioButton.addEventListener('change', function () {--}}
-                {{--                            if (radioButton.checked) {--}}
-                {{--                                const selectedValue = radioButton.value;--}}
-                {{--                                subcategory_list.innerHTML = '';--}}
-
-                {{--                                const subcategory = data[selectedValue - 1]?.children || [];--}}
-
-                {{--                                if (subcategory.length > 0) {--}}
-                {{--                                    subcategory_button.removeAttribute('disabled');--}}
-                {{--                                    subcategory.forEach(sub => {--}}
-                {{--                                        subcategory_list.appendChild(createCheckbox(sub));--}}
-                {{--                                    });--}}
-                {{--                                } else {--}}
-                {{--                                    subcategory_button.setAttribute('disabled', '');--}}
-                {{--                                }--}}
-                {{--                            }--}}
-                {{--                        });--}}
-                {{--                    });--}}
-                {{--                </script>--}}
+                @push('scripts')
+                    <script data-categories="{{ json_encode($categories) }}"
+                            src="/assets/js/category-resolver.js"></script>
+                @endpush
                 <div class="flex gap-x-3 my-4 items-center">
                     <p class="text-sm text-gray-500">
                         Colors

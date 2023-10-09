@@ -19,7 +19,7 @@ class Category extends Model
         'category_id',
     ];
 
-    public function children(): BelongsToMany
+    public function subcategories(): BelongsToMany
     {
         return $this->belongsToMany(Subcategory::class);
     }

@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Color\StoreColorRequest;
 use App\Http\Resources\ColorResource;
-use App\Http\Resources\SubcategoryResource;
 use App\Models\Color;
-use App\Models\Subcategory;
 
 class ColorController extends Controller
 {

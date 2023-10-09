@@ -13,17 +13,16 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         $category = [
-            'bags',
-            'glasses',
-            'straps',
-            'purses',
+            'Одяг',
+            'Взуття',
+            'Аксесуари',
         ];
 
         Category::query()->insert(array_map(function ($item) {
             return ['name' => $item];
         }, $category));
 
-        Category::query()->find(1)->children()->sync([1,2]);
-        Category::query()->find(2)->children()->sync([1]);
+        Category::query()->find(1)->subcategories()->sync([1]);
+        Category::query()->find(3)->subcategories()->sync([2]);
     }
 }

@@ -3,7 +3,7 @@
         <Link class="flex-1 bg-center h-[100%] bg-no-repeat object-contain
             flex justify-center items-center bg-cover cover"
               :href="route('product.index', {
-              category: 'bags'
+              category: category
           })"
               :style="{ backgroundImage: 'url(' + image + ')' }">
 
@@ -27,6 +27,7 @@ export default defineComponent({
     props: {
         text: String,
         image: String,
+        category: String
     }
 })
 </script>
@@ -47,6 +48,6 @@ export default defineComponent({
     width: 100%;
     height: 100%;
     z-index: 0; /* Розміщуємо псевдоелемент позаду контенту */
-    opacity: 0.6; /* Затемнення картинки (змініть за потребою) */
+    opacity: 0.3; /* Затемнення картинки (змініть за потребою) */
 }
 </style>

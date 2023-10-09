@@ -10,11 +10,13 @@ use App\Http\Resources\CategoryResource;
 use App\Http\Resources\ColorResource;
 use App\Http\Resources\ProductResource;
 use App\Http\Resources\SubcategoryResource;
+use App\Http\Resources\TagResource;
 use App\Models\Category;
 use App\Models\Color;
 use App\Models\Media;
 use App\Models\Product;
 use App\Models\Subcategory;
+use App\Models\Tag;
 use App\Services\MediaSave;
 
 class ProductController extends Controller
@@ -25,7 +27,8 @@ class ProductController extends Controller
             'data' =>
                 ProductResource::collection(Product::query()
                     ->with('category:id,name')
-                    ->with('subcategories:id,name')
+                    ->with('subcategory:id,name')
+                    ->with('tags:id,name')
                     ->addSelect(['preview' => Media::query()
                         ->select('media.url_preview')
                         ->whereColumn('product_id', 'products.id')
@@ -43,16 +46,16 @@ class ProductController extends Controller
     {
         $product->load([
             'colors:id,hex',
-            'subcategories:id,name',
-            'media:id,url_preview,url_original',
-            'category:id,name'
+            'subcategory:id,name',
+            'category:id,name',
+            'tags:id,name',
         ]);
 
         return view('Pages.Product.edit', [
             'product' => ProductResource::make($product),
-            'categories' => CategoryResource::collection(Category::get())->resolve(),
-            'subcategories' => SubcategoryResource::collection(Subcategory::get())->resolve(),
-            'colors' => ColorResource::collection(Color::get())->resolve(),
+            'categories' => CategoryResource::collection(Category::with('subcategories')->get())->resolve(),
+            'colors' => ColorResource::collection(Color::get()),
+            'tags' => TagResource::collection(Tag::get()),
         ]);
     }
 
@@ -68,8 +71,8 @@ class ProductController extends Controller
     public function create()
     {
         return view('Pages.Product.create', [
-            'categories' => CategoryResource::collection(Category::get())->resolve(),
-            'subcategories' => SubcategoryResource::collection(Subcategory::get())->resolve(),
+            'tags' => TagResource::collection(Tag::get())->resolve(),
+            'categories' => CategoryResource::collection(Category::with('subcategories')->get())->resolve(),
             'colors' => ColorResource::collection(Color::get())->resolve(),
         ]);
     }

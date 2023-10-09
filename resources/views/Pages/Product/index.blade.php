@@ -24,6 +24,7 @@
             'Product',
             'Category',
             'Subcategory',
+            'Tags',
             'Stock',
             'Sales',
             'Rating',
@@ -43,20 +44,28 @@
                         </x-admin.table.td>
                         <x-admin.table.td>
                             <x-slot:content>
-                                                 <span class="bg-primary-100 text-primary-800 text-xs font-medium px-2
-                                                 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">
-                                                     {{$product['category']['name']}}
-                                                 </span>
+                                 <span class="bg-primary-100 text-primary-800 text-xs font-medium px-2
+                                 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">
+                                     {{$product['category']['name']}}
+                                 </span>
+                            </x-slot:content>
+                        </x-admin.table.td>
+                        <x-admin.table.td>
+                            <x-slot:content>
+                                 <span class="bg-primary-100 text-primary-800 text-xs font-medium px-2
+                                 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">
+                                     {{$product['subcategory']['name']}}
+                                 </span>
                             </x-slot:content>
                         </x-admin.table.td>
                         <x-admin.table.td>
                             <x-slot:content>
                                 <div class="flex sm:max-w-[200px] overflow-hidden overflow-x-auto gap-x-2">
-                                    @if($product['subcategories'])
-                                        @foreach($product['subcategories'] as $category) @endforeach
+                                    @if(count($product['tags']) > 0)
+                                        @foreach($product['tags'] as $tags) @endforeach
                                         <span class="bg-primary-100 text-primary-800 text-xs font-medium px-2
                                                  py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">
-                                                     {{$category['name']}}
+                                                     {{$tags['name']}}
                                                  </span>
                                     @else
                                         <span class="bg-primary-100 text-primary-800 text-xs font-medium px-2

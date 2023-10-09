@@ -1,10 +1,12 @@
 <div class="flex flex-row gap-x-4 items-center justify-between">
-    <label for="title" class="in my-2 text-sm text-gray-600 dark:text-white">{{$title}}</label>
+    @if(isset($title))
+        <label for="title" class="in my-2 text-sm text-gray-600 dark:text-white">{{$title}}</label>
+    @endif
     <button id="{{$id}}" data-dropdown-toggle="{{$dropdownToggle}}" data-dropdown-trigger="click"
             {{$attributes->merge([
     'class'=> 'hover:text-white bg-gray-100 hover:bg-blue-800 border border-gray-300
-                                font-medium rounded-lg text-sm px-5 py-2 text-center
-                                inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700'
+font-medium rounded-lg text-sm px-5 py-2 text-center
+inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700'
 ])}}
             type="button">
         {{$text}}

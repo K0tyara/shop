@@ -54,8 +54,8 @@
                         <x-admin.table.td>
                             <x-slot:content>
                                 <div class="flex w-[200px] sm:w-full overflow-hidden overflow-x-auto gap-x-2">
-                                    @if($category['children'])
-                                        @foreach($category['children'] as $subcategory)
+                                    @if($category['subcategories'])
+                                        @foreach($category['subcategories'] as $subcategory)
                                             <span class="bg-primary-100 text-primary-800 text-xs font-medium px-2
                                                  py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">
                                                      {{$subcategory['name']}}

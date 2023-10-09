@@ -34,20 +34,21 @@
                         </x-slot:content>
                     </x-inputs.gray-dropdown>
                     <x-labels.sm-gray-label :text="'and'" class="mx-6"/>
-                    <x-inputs.gray-dropdown :id="'subcategory'"
+                    <x-inputs.gray-dropdown :id="'subcategory_id'"
                                             :text="'Subcategory'"
                                             :title="'subcategory'"
                                             :dropdown-toggle="'dropdownSubcategory'">
                         <x-slot:content>
                             <x-lists.gray-ul :aria-labelledby="'subcategory_ul'"
-                                             :items="array_map(function ($item){
-                                             return view('components.inputs.label-checkbox',[
-                                              'id' => $item['id'],
-                                              'value' => $item['id'],
-                                              'title' => $item['name'],
-                                              'name' => 'subcategories[]'
-                                             ]);
-                                }, $subcategories)"/>
+                                {{--                                             :items="array_map(function ($item){--}}
+                                {{--                                             return view('components.inputs.label-checkbox',[--}}
+                                {{--                                              'id' => $item['id'],--}}
+                                {{--                                              'value' => $item['id'],--}}
+                                {{--                                              'title' => $item['name'],--}}
+                                {{--                                              'name' => 'subcategories[]'--}}
+                                {{--                                             ]);--}}
+                                {{--                                }, $subcategories)"--}}
+                            />
                         </x-slot:content>
                     </x-inputs.gray-dropdown>
                 </div>
@@ -92,34 +93,12 @@
                 <x-buttons.primary-button :content="'Update'"
                                           class="self-end my-6"/>
             </form>
-            <script>
-                const product = @json($product);
 
-                function setCheckedState(elements, data) {
-                    elements.forEach(element => {
-                        const elementId = element.value;
-                        element.checked = data.includes(elementId);
-                    });
-                }
-
-                const categoryList = document.querySelectorAll('[aria-labelledby=category_ul] input[type=radio]');
-                const subcategoryList = document.querySelectorAll('[aria-labelledby=subcategory_ul] input[type=checkbox]');
-                const colorsList = document.querySelectorAll("input[name='colors[]']");
-
-                const selectedCategoryId = product.category.id;
-                const selectedCategoryRadio = Array.from(categoryList).find(c => c.id === String(selectedCategoryId));
-                if (selectedCategoryRadio) {
-                    selectedCategoryRadio.checked = true;
-                }
-
-                const selectedSubcategoryIds = product.subcategories.map(c => String(c.id));
-                setCheckedState(subcategoryList, selectedSubcategoryIds);
-
-                const selectedColorIds = product.colors.map(c => String(c.id));
-                setCheckedState(colorsList, selectedColorIds);
-
-
-            </script>
+            @push('scripts')
+                <script data-product="{{json_encode($product)}}"
+                        data-categories="{{ json_encode($categories) }}"
+                        src="/assets/js/product-data-resolver.js"></script>
+            @endpush
         </div>
     </div>
 @endsection

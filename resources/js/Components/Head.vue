@@ -1,6 +1,6 @@
 <template>
-    <div class="bg-[url('https://krasavica.info/uploads/posts/2022-05/1653874226_9-krasavica-info-p-podium-dlya-pokaza-mod-devushka-krasivo-fo-12.jpg')]
-      bg-no-repeat  w-full bg-cover h-[300px] sm:h-[600px] cover
+    <div class="bg-[url('https://static.reserved.com/media/SHARED/stronywizerunkowe/reserved/home/content/img/sliders/desktop/baner-full-autumn-outfits-kids-1900x950px-280823.jpg')]
+      bg-no-repeat  w-full bg-cover h-[300px] sm:h-[600px]
         flex flex-col justify-end relative">
         <div class="flex flex-col items-start gap-y-10
                    absolute bottom-[10%]  left-[5%]">

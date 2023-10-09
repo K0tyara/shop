@@ -22,11 +22,13 @@ class ProductResource extends JsonResource
             'article' => $this->article,
             'qty' => $this->qty,
             'created_at' => $this->created_at,
+            'preview' => $this->whenHas('preview'),
 
             'category' => CategoryResource::make($this->whenLoaded('category')),
-            'subcategories' => SubcategoryResource::collection($this->whenLoaded('subcategories')),
+            'subcategory' => SubcategoryResource::make($this->whenLoaded('subcategory')),
+
+            'tags' => TagResource::collection($this->whenLoaded('tags')),
             'colors' => ColorResource::collection($this->whenLoaded('colors')),
-            'preview' => $this->whenHas('preview'),
         ];
     }
 }
