@@ -1,5 +1,10 @@
 @extends('admin')
 
+
+@push('scripts')
+    <script  data-categories="{{ json_encode($categories) }}" src="/assets/js/product-data-resolver.js"></script>
+@endpush
+
 @section('content')
     <div class="container mx-auto pb-5">
         <div class="flex flex-col items-center flex-wrap">
@@ -13,7 +18,6 @@
                     <x-inputs.text :text="'Title'" :id="'title'" :name="'title'"
                                    :placeholder="'Awesome product...'"/>
                 </div>
-                {{--                {{dd($categories)}}--}}
                 <div class="grid grid-cols-[1fr] sm:flex flex-row gap-x-4 justify-between">
                     <x-inputs.gray-dropdown :id="'category'"
                                             :text="'Category'"
@@ -64,10 +68,7 @@
                         </x-slot:content>
                     </x-inputs.gray-dropdown>
                 </div>
-                @push('scripts')
-                    <script data-categories="{{ json_encode($categories) }}"
-                            src="/assets/js/category-resolver.js"></script>
-                @endpush
+
                 <div class="flex gap-x-3 my-4 items-center">
                     <p class="text-sm text-gray-500">
                         Colors

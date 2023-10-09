@@ -21,7 +21,8 @@ class Product extends Model
         'article',
         'qty',
         'price',
-        'category_id'
+        'category_id',
+        'subcategory_id'
     ];
 
     public function category(): BelongsTo
@@ -32,11 +33,6 @@ class Product extends Model
     public function subcategory(): BelongsTo
     {
         return $this->belongsTo(Subcategory::class);
-    }
-
-    public function subcategories(): BelongsToMany
-    {
-        return $this->belongsToMany(Subcategory::class);
     }
 
     public function tags(): BelongsToMany

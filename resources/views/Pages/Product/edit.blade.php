@@ -1,5 +1,9 @@
 @extends('admin')
-
+@push('scripts')
+    <script data-product="{{json_encode($product)}}"
+            data-categories="{{ json_encode($categories) }}"
+            src="/assets/js/product-data-resolver.js"></script>
+@endpush
 @section('content')
     <div class="container mx-auto pb-5">
         <div class="flex flex-col items-center flex-wrap">
@@ -34,20 +38,12 @@
                         </x-slot:content>
                     </x-inputs.gray-dropdown>
                     <x-labels.sm-gray-label :text="'and'" class="mx-6"/>
-                    <x-inputs.gray-dropdown :id="'subcategory_id'"
+                    <x-inputs.gray-dropdown :id="'subcategory'"
                                             :text="'Subcategory'"
                                             :title="'subcategory'"
                                             :dropdown-toggle="'dropdownSubcategory'">
                         <x-slot:content>
                             <x-lists.gray-ul :aria-labelledby="'subcategory_ul'"
-                                {{--                                             :items="array_map(function ($item){--}}
-                                {{--                                             return view('components.inputs.label-checkbox',[--}}
-                                {{--                                              'id' => $item['id'],--}}
-                                {{--                                              'value' => $item['id'],--}}
-                                {{--                                              'title' => $item['name'],--}}
-                                {{--                                              'name' => 'subcategories[]'--}}
-                                {{--                                             ]);--}}
-                                {{--                                }, $subcategories)"--}}
                             />
                         </x-slot:content>
                     </x-inputs.gray-dropdown>
@@ -93,12 +89,6 @@
                 <x-buttons.primary-button :content="'Update'"
                                           class="self-end my-6"/>
             </form>
-
-            @push('scripts')
-                <script data-product="{{json_encode($product)}}"
-                        data-categories="{{ json_encode($categories) }}"
-                        src="/assets/js/product-data-resolver.js"></script>
-            @endpush
         </div>
     </div>
 @endsection

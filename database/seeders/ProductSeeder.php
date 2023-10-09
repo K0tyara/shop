@@ -22,6 +22,5 @@ class ProductSeeder extends Seeder
             $product_item->tags()->sync([$faker->numberBetween(1, $tag_count)]);
             $product_item->colors()->sync([$faker->numberBetween(1, $color_count)]);
         });
-        Product::find(1)->subcategories()->sync([1]);
     }
 }

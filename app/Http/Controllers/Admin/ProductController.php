@@ -55,7 +55,7 @@ class ProductController extends Controller
             'product' => ProductResource::make($product),
             'categories' => CategoryResource::collection(Category::with('subcategories')->get())->resolve(),
             'colors' => ColorResource::collection(Color::get()),
-            'tags' => TagResource::collection(Tag::get()),
+            'tags' => TagResource::collection(Tag::get())->resolve(),
         ]);
     }
 
@@ -63,8 +63,6 @@ class ProductController extends Controller
     {
         $product->update($request->all());
         $product->colors()->sync($request->colors);
-        $product->subcategories()->sync($request->subcategories);
-
         return redirect()->route('admin.product.index');
     }
 

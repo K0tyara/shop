@@ -1,5 +1,5 @@
 const category = document.querySelector('#category');
-const subcategory_button = document.querySelector('#subcategory_id');
+const subcategory_button = document.querySelector('#subcategory');
 const subcategory_list = document.querySelector('ul[aria-labelledby=subcategory_ul]');
 const radioButtons = document.querySelectorAll('input[type="radio"][name="category_id"]');
 const colorsList = document.querySelectorAll("input[name='colors[]']");
@@ -26,7 +26,7 @@ function createRadio(sub, isChecked) {
     input.id = sub.id;
     input.value = sub.id;
     input.checked = isChecked;
-    input.name = 'subcategories';
+    input.name = 'subcategory_id';
     input.type = 'radio';
     input.classList.add('w-4', 'h-4', 'text-blue-600', 'bg-gray-100', 'border-gray-300', 'rounded-full',
         'focus:ring-blue-500', 'dark:focus:ring-blue-600', 'dark:ring-offset-gray-700', 'dark:focus:ring-offset-gray-700',
